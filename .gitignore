@@ -1,4 +1,4 @@
-# 忽略.out
+# 忽略.out和out.dSYM
 *.out
-# 忽略所有out.dSYM目录
-*.out.dSYM/
+*.out.dSYM
+.DS_Store
