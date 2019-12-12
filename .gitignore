@@ -1,0 +1,4 @@
+# 忽略.out
+*.out
+# 忽略所有out.dSYM目录
+*.out.dSYM/
