@@ -1,7 +1,7 @@
 # PracticeNote
 用来练习的代码和笔记
 
-代码都位于script目录下面
+代码都位于src目录下面
 
 # 编译方法
 通过Makefile文件进行编译。
