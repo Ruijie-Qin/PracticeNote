@@ -10,12 +10,6 @@
             "args": [
                 "clean",
                 "start",
-                /* "${file}",
-                //"./script/main.cpp",
-                "-o",
-                "${workspaceFolder}/output/${fileBasenameNoExtension}.out",
-                "-std=c++11",
-                "-g" */
             ],
             "presentation": {
                 "echo": true,
