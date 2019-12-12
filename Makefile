@@ -1,24 +1,24 @@
 INCLUDE_PATH = -I./src
-BUILD_DIR = ./output
+OUTPUT_DIR = ./output
 
-ALL_OBJ_O = $(BUILD_DIR)/testMakefile.o $(BUILD_DIR)/main.o
-TARGET = $(BUILD_DIR)/main.out
+ALL_OBJ_O = $(OUTPUT_DIR)/testMakefile.o $(OUTPUT_DIR)/main.o
+TARGET = $(OUTPUT_DIR)/main.out
 
 CC = clang++ $(INCLUDE_PATH)
 
 start: prepare $(TARGET)
 
 prepare:
-	mkdir -p $(BUILD_DIR)
+	mkdir -p $(OUTPUT_DIR)
 
 $(TARGET): $(ALL_OBJ_O)
 	$(CC) -o $@ $(ALL_OBJ_O)
 
-$(BUILD_DIR)/testMakefile.o: ./src/testMakefile.cpp
+$(OUTPUT_DIR)/testMakefile.o: ./src/testMakefile.cpp
 	$(CC) -c $< -o $@
 
-$(BUILD_DIR)/main.o: ./src/main.cpp
+$(OUTPUT_DIR)/main.o: ./src/main.cpp
 	$(CC) -c $< -o $@
 
 clean:
-	rm -rf $(BUILD_DIR)
+	rm -rf $(OUTPUT_DIR)

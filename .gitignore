@@ -2,3 +2,5 @@
 *.out
 *.out.dSYM
 .DS_Store
+# 忽略输出目录
+/output
