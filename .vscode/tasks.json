@@ -5,15 +5,17 @@
     "tasks": [
         {
             "label": "c++",
-            "command": "clang++",
+            "command": "make",//"clang++",
             "type": "shell",
             "args": [
-                "${file}",
+                "clean",
+                "start",
+                /* "${file}",
                 //"./script/main.cpp",
                 "-o",
                 "${workspaceFolder}/output/${fileBasenameNoExtension}.out",
                 "-std=c++11",
-                "-g"
+                "-g" */
             ],
             "presentation": {
                 "echo": true,
