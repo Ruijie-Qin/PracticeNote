@@ -4,7 +4,7 @@ OUTPUT_DIR = ./output
 ALL_OBJ_O = $(OUTPUT_DIR)/ReverseListSolution.o $(OUTPUT_DIR)/LeetCodeApplication.o
 TARGET = $(OUTPUT_DIR)/LeetCodeApplication.out
 
-CC = clang++ $(INCLUDE_PATH) -std=c++11
+CC = clang++ $(INCLUDE_PATH) -std=c++11 -g
 
 start: prepare $(TARGET)
 

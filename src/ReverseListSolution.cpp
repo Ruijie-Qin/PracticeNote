@@ -44,7 +44,7 @@ namespace Phoenix
 		ListNode *entryPoint = NULL;
 		for (int i = 1; i <= 4; i++)
 		{
-			if (i == 0)
+			if (i == 4)
 			{
 				entryPoint = curNode;
 			}
@@ -193,7 +193,7 @@ namespace Phoenix
 	{
 		ListNode *slow = head;
 		ListNode *fast = head;
-		ListNode *firstMeet;
+		ListNode *firstMeet = NULL;
 		// 寻找相遇点
 		while (fast && fast->next && fast->next->next)
 		{
@@ -214,14 +214,12 @@ namespace Phoenix
 		slow = head;
 		while (slow && firstMeet)
 		{
-			
 			if (slow == firstMeet)
 			{
-				break;
+				return slow;
 			}
 			slow = slow->next;
 			firstMeet = firstMeet->next;
-			return NULL;
 		}
 		return NULL;
 	}
