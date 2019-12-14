@@ -1,0 +1,167 @@
+#include "ReverseListSolution.h"
+
+#include <iostream>
+
+using namespace std;
+
+namespace Phoenix
+{
+	/// 删除链表
+	void LinkListSolution::deleteList(ListNode* head)
+	{
+		ListNode *curNode = head;
+		while (curNode)
+		{
+			ListNode *tmp = curNode;
+			curNode = curNode->next;
+			tmp->next = NULL;
+			delete tmp;
+		}
+		head = NULL;
+	}
+	/// 执行各种测试案例
+	void LinkListSolution::RunTestCase(SolutionEnum solutionType)
+	{
+		switch (solutionType)
+		{
+		case ReverseList:
+		case SwapPairsList:
+			RunReverseListTestCase(solutionType);
+			break;
+		case HasCycle:
+			RunHasCycleListTestCase();
+			break;
+		default:
+			break;
+		}
+	}
+	/// 执行有环的测试案例
+	void LinkListSolution::RunHasCycleListTestCase()
+	{
+		ListNode *head = new ListNode(0);
+		ListNode *curNode = head;
+		ListNode *entryPoint = NULL;
+		for (int i = 1; i <= 4; i++)
+		{
+			if (i == 0)
+			{
+				entryPoint = curNode;
+			}
+			curNode->next = new ListNode(i);
+			curNode = curNode->next;
+		}
+		curNode->next = entryPoint;
+		bool _hasCycle = hasCycle(head);
+		cout << _hasCycle << endl;
+	}
+
+	/// 执行测试案例
+	void LinkListSolution::RunReverseListTestCase(SolutionEnum solutionType)
+	{
+		ListNode *head = new ListNode(0);
+		ListNode *curNode = head;
+		// 创建链表
+		for (int i = 1; i <= 3; i++)
+		{
+			curNode->next = new ListNode(i);
+			curNode = curNode->next;
+		}
+		// 输出链表
+		curNode = head;
+		while (curNode)
+		{
+			cout << curNode->val << ",";
+			curNode = curNode->next;
+		}
+		cout << endl;
+		// 处理链表
+		switch (solutionType)
+		{
+		case ReverseList:
+			head = reverseList(head);
+			break;
+		case SwapPairsList:
+			head = swapPairs(head);
+			break;
+		default:
+			head = NULL;
+			break;
+		}
+		// 输出处理后的链表
+		curNode = head;
+		while (curNode)
+		{
+			cout << curNode->val << ",";
+			curNode = curNode->next;
+		}
+		cout << endl;
+		// 删除链表
+		deleteList(head);
+	}
+
+	/// 反转链表
+	ListNode* LinkListSolution::reverseList(ListNode* head)
+	{
+		if (head == NULL || head->next == NULL)
+		{
+			return head;
+		}
+		ListNode *preNode = NULL;
+		ListNode *curNode = head;
+		while (curNode)
+		{
+			ListNode *tmp = curNode->next;
+			curNode->next = preNode;
+			preNode = curNode;
+			curNode = tmp;
+		}
+		head = preNode;
+		return head;
+	}
+
+	/// 交换连续两个节点
+	ListNode* LinkListSolution::swapPairs(ListNode* head)
+	{
+		if (head == NULL || head->next == NULL)
+		{
+			return head;
+		}
+		ListNode *realHead = new ListNode(0);
+		realHead->next = head;
+
+		ListNode *firstNode = head;
+		ListNode *secondNode = head->next;
+		ListNode *preFirst = realHead;
+		while (firstNode && secondNode)
+		{
+			firstNode->next = secondNode->next;
+			secondNode->next = firstNode;
+			preFirst->next = secondNode;
+			preFirst = firstNode;
+			// 移动到下一组节点
+			firstNode = firstNode->next;
+			if (firstNode != NULL)
+			{
+				secondNode = firstNode->next;
+			}
+		}
+		return realHead->next;
+	}
+
+	/// 使用快慢指针判断是否有环
+	bool LinkListSolution::hasCycle(ListNode* head)
+	{
+		ListNode *slow = head;
+		ListNode *fast = head;
+		while (fast && fast->next && fast->next->next)
+		{
+			slow = slow->next;
+			fast = fast->next->next;
+			if (slow == fast)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+}
