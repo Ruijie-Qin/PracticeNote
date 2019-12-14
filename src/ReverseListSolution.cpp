@@ -20,7 +20,7 @@ void LinkListSolution::deleteList(ListNode *head)
 	head = NULL;
 }
 /// 执行各种测试案例
-void LinkListSolution::RunTestCase(SolutionEnum solutionType)
+void LinkListSolution::RunTestCase(LinkListSolutionEnum solutionType)
 {
 	switch (solutionType)
 	{
@@ -38,7 +38,7 @@ void LinkListSolution::RunTestCase(SolutionEnum solutionType)
 	}
 }
 /// 执行有环的测试案例
-void LinkListSolution::RunHasCycleListTestCase(SolutionEnum solutionType)
+void LinkListSolution::RunHasCycleListTestCase(LinkListSolutionEnum solutionType)
 {
 	ListNode *head = new ListNode(0);
 	ListNode *curNode = head;
@@ -80,7 +80,7 @@ void LinkListSolution::RunHasCycleListTestCase(SolutionEnum solutionType)
 }
 
 /// 执行测试案例
-void LinkListSolution::RunReverseListTestCase(SolutionEnum solutionType)
+void LinkListSolution::RunReverseListTestCase(LinkListSolutionEnum solutionType)
 {
 	ListNode *head = new ListNode(0);
 	ListNode *curNode = head;

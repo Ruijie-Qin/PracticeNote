@@ -2,7 +2,7 @@
 //
 
 #include "ReverseListSolution.h"
-
+#include "StackQueueSolution.h"
 #include <iostream>
 
 using namespace std;
@@ -12,8 +12,13 @@ int main()
 {
     cout << "Hello World!\n"; 
 #pragma region 链表题目
-	LinkListSolution reverseTest;
-	reverseTest.RunTestCase(SolutionEnum::SwapPairsListKGroup);
+	// LinkListSolution reverseTest;
+	// reverseTest.RunTestCase(LinkListSolutionEnum::SwapPairsListKGroup);
+#pragma endregion
+
+#pragma region 栈和队列
+	StackQueueSolution sqSolution;
+	sqSolution.RunTestCase(StackQueueSolutionEnum::ValidParentheses);
 #pragma endregion
 
 	return 0;

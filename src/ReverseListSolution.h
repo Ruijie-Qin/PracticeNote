@@ -11,7 +11,7 @@ namespace Phoenix
 		ListNode(int x) : val(x), next(NULL) {}
 	};
 
-	enum SolutionEnum
+	enum LinkListSolutionEnum
 	{
 		ReverseList = 1,
 		SwapPairsList,
@@ -24,11 +24,11 @@ namespace Phoenix
 	{
 	public:
 		/// 执行测试案例
-		void RunTestCase(SolutionEnum solutionType = SolutionEnum::ReverseList);
+		void RunTestCase(LinkListSolutionEnum solutionType = LinkListSolutionEnum::ReverseList);
 		/// 执行反转和交换测试案例
-		void RunReverseListTestCase(SolutionEnum solutionType = SolutionEnum::ReverseList);
+		void RunReverseListTestCase(LinkListSolutionEnum solutionType = LinkListSolutionEnum::ReverseList);
 		/// 执行是否有环的测试案例
-		void RunHasCycleListTestCase(SolutionEnum solutionType = SolutionEnum::HasCycle);
+		void RunHasCycleListTestCase(LinkListSolutionEnum solutionType = LinkListSolutionEnum::HasCycle);
 		/// 反转链表, leetcode: Reverse Linked List
 		ListNode* reverseList(ListNode* head);
 		/// 交换连续两个节点, leetcode: Swap Nodes in Pairs
