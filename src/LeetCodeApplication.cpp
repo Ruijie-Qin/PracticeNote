@@ -18,7 +18,7 @@ int main()
 
 #pragma region 栈和队列
 	StackQueueSolution sqSolution;
-	sqSolution.RunTestCase(StackQueueSolutionEnum::ValidParentheses);
+	sqSolution.RunTestCase(StackQueueSolutionEnum::BackspaceCompare);
 #pragma endregion
 
 	return 0;
