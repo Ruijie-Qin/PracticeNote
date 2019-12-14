@@ -15,7 +15,7 @@
             "environment": [],
             "externalConsole": false,
             "MIMode": "lldb",
-            "preLaunchTask": "c++",
+            "preLaunchTask": "使用MakeFile编译",
             "setupCommands": [
                 {
                     "description": "Enable pretty-printing for gdb",

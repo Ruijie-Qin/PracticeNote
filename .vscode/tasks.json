@@ -4,7 +4,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "c++",
+            "label": "使用MakeFile编译",
             "command": "make",//"clang++",
             "type": "shell",
             "args": [
