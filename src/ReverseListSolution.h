@@ -16,6 +16,7 @@ namespace Phoenix
 		ReverseList = 1,
 		SwapPairsList,
 		HasCycle,
+		CheckCycle,
 	};
 
 	class LinkListSolution
@@ -26,13 +27,15 @@ namespace Phoenix
 		/// 执行反转和交换测试案例
 		void RunReverseListTestCase(SolutionEnum solutionType = SolutionEnum::ReverseList);
 		/// 执行是否有环的测试案例
-		void RunHasCycleListTestCase();
+		void RunHasCycleListTestCase(SolutionEnum solutionType = SolutionEnum::HasCycle);
 		/// 反转链表, leetcode: Reverse Linked List
 		ListNode* reverseList(ListNode* head);
 		/// 交换连续两个节点, leetcode: Swap Nodes in Pairs
 		ListNode* swapPairs(ListNode* head);
 		/// 判断链表是否有环, leetcode: Linked List Cycle
 		bool hasCycle(ListNode* head);
+		/// 找到环的起始点
+		ListNode *detectCycle(ListNode *head);
 	private:
 		/// 删除链表
 		void deleteList(ListNode* head);

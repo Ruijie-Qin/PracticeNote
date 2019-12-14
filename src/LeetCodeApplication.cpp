@@ -13,7 +13,7 @@ int main()
     cout << "Hello World!\n"; 
 #pragma region 链表题目
 	LinkListSolution reverseTest;
-	reverseTest.RunTestCase(SolutionEnum::SwapPairsList);
+	reverseTest.RunTestCase(SolutionEnum::CheckCycle);
 #pragma endregion
 
 	return 0;

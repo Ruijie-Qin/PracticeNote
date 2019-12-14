@@ -8,14 +8,21 @@
             "name": "c/c++ Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/output/${fileBasenameNoExtension}.out",
+            "program": "${workspaceFolder}/output/LeetCodeApplication.out",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
             "MIMode": "lldb",
-            "preLaunchTask": "使用MakeFile编译"
+            "preLaunchTask": "c++",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
         }
     ]
 }

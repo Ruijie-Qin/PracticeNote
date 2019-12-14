@@ -29,14 +29,15 @@ namespace Phoenix
 			RunReverseListTestCase(solutionType);
 			break;
 		case HasCycle:
-			RunHasCycleListTestCase();
+		case CheckCycle:
+			RunHasCycleListTestCase(solutionType);
 			break;
 		default:
 			break;
 		}
 	}
 	/// 执行有环的测试案例
-	void LinkListSolution::RunHasCycleListTestCase()
+	void LinkListSolution::RunHasCycleListTestCase(SolutionEnum solutionType)
 	{
 		ListNode *head = new ListNode(0);
 		ListNode *curNode = head;
@@ -51,8 +52,31 @@ namespace Phoenix
 			curNode = curNode->next;
 		}
 		curNode->next = entryPoint;
-		bool _hasCycle = hasCycle(head);
-		cout << _hasCycle << endl;
+		switch (solutionType)
+		{
+		case HasCycle:
+			{
+				bool _hasCycle = hasCycle(head);
+				cout << _hasCycle << endl;
+				break;
+			}
+		case CheckCycle:
+			{
+				ListNode *entryPt = detectCycle(head);
+				if (entryPt)
+				{
+					cout << "entryPt=" << entryPt->val << endl;
+				}
+				else
+				{
+					cout << "no cycle" << endl;
+				}
+				break;
+			}
+		default:
+			break;
+		}
+		
 	}
 
 	/// 执行测试案例
@@ -163,5 +187,42 @@ namespace Phoenix
 			}
 		}
 		return false;
+	}
+
+	ListNode* LinkListSolution::detectCycle(ListNode *head)
+	{
+		ListNode *slow = head;
+		ListNode *fast = head;
+		ListNode *firstMeet;
+		// 寻找相遇点
+		while (fast && fast->next && fast->next->next)
+		{
+			slow = slow->next;
+			fast = fast->next->next;
+			if (slow == fast)
+			{
+				firstMeet = slow;
+				break;
+			}
+		}
+		// 如果没有相遇, 则返回空
+		if (firstMeet == NULL)
+		{
+			return NULL;
+		}
+		// // 从头节点和相遇节点开始+1, 第一次相遇点就是入口
+		slow = head;
+		while (slow && firstMeet)
+		{
+			
+			if (slow == firstMeet)
+			{
+				break;
+			}
+			slow = slow->next;
+			firstMeet = firstMeet->next;
+			return NULL;
+		}
+		return NULL;
 	}
 }
