@@ -17,6 +17,7 @@ namespace Phoenix
 		SwapPairsList,
 		HasCycle,
 		CheckCycle,
+		SwapPairsListKGroup,
 	};
 
 	class LinkListSolution
@@ -32,9 +33,11 @@ namespace Phoenix
 		ListNode* reverseList(ListNode* head);
 		/// 交换连续两个节点, leetcode: Swap Nodes in Pairs
 		ListNode* swapPairs(ListNode* head);
+		/// k个节点逆序: Reverse Nodes in k-Group
+		ListNode* reverseKGroup(ListNode* head, int k);
 		/// 判断链表是否有环, leetcode: Linked List Cycle
 		bool hasCycle(ListNode* head);
-		/// 找到环的起始点
+		/// 找到环的起始点:  Linked List Cycle II
 		ListNode *detectCycle(ListNode *head);
 	private:
 		/// 删除链表
