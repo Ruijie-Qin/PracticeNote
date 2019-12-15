@@ -18,7 +18,7 @@ int main()
 
 #pragma region 栈和队列
 	StackQueueSolution sqSolution;
-	sqSolution.RunTestCase(StackQueueSolutionEnum::BackspaceCompare);
+	sqSolution.RunTestCase(StackQueueSolutionEnum::MaxSlidingWindow);
 #pragma endregion
 
 	return 0;
