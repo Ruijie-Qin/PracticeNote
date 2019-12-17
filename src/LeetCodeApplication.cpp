@@ -4,6 +4,7 @@
 #include "ReverseListSolution.h"
 #include "StackQueueSolution.h"
 #include "MapSetSolution.h"
+#include "TreeGraphSolution.h"
 #include <iostream>
 
 using namespace std;
@@ -23,8 +24,13 @@ int main()
 #pragma endregion
 
 #pragma region Map和Set
-	MapSetSolution msSolution;
-	msSolution.RunTestCase(MapSetSolutionEnum::KSum);
+	// MapSetSolution msSolution;
+	// msSolution.RunTestCase(MapSetSolutionEnum::KSum);
+#pragma endregion
+
+#pragma region Tree和Graph
+	TreeSolution treeSolution;
+	treeSolution.RunTestCase(TreeGraphSolutionEnum::ValidBST);
 #pragma endregion
 
 	return 0;
