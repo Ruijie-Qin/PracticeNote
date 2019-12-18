@@ -30,7 +30,7 @@ int main()
 
 #pragma region Tree和Graph
 	TreeSolution treeSolution;
-	treeSolution.RunTestCase(TreeGraphSolutionEnum::ValidBST);
+	treeSolution.RunTestCase(TreeGraphSolutionEnum::NormalLowestComAc);
 #pragma endregion
 
 	return 0;
