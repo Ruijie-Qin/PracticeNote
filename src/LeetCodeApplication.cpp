@@ -5,6 +5,7 @@
 #include "StackQueueSolution.h"
 #include "MapSetSolution.h"
 #include "TreeGraphSolution.h"
+#include "DivideConquer.h"
 #include <iostream>
 
 using namespace std;
@@ -29,8 +30,13 @@ int main()
 #pragma endregion
 
 #pragma region Tree和Graph
-	TreeSolution treeSolution;
-	treeSolution.RunTestCase(TreeGraphSolutionEnum::NormalLowestComAc);
+	// TreeSolution treeSolution;
+	// treeSolution.RunTestCase(TreeGraphSolutionEnum::NormalLowestComAc);
+#pragma endregion
+
+#pragma region 分治
+	DivideConquerSolution divSolution;
+	divSolution.RunTestCase(DivideConquerSolutionEnum::PowN);
 #pragma endregion
 
 	return 0;

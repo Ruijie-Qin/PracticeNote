@@ -8,7 +8,8 @@
 		"files.associations": {
 			"vector": "cpp",
 			"hash_map": "cpp",
-			"algorithm": "cpp"
+			"algorithm": "cpp",
+			"ostream": "cpp"
 		}
 	}
 }
