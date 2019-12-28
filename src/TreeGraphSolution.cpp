@@ -1,6 +1,7 @@
 #include "TreeGraphSolution.h"
 #include <limits>
 #include <iostream>
+#include <queue>
 using namespace std;
 
 namespace Phoenix
@@ -49,6 +50,59 @@ namespace Phoenix
                 TreeNode *p = root->left;
                 TreeNode *q = root->left->right->right;
                 cout << NoramlTreeLowestCommonAncestor(root, p, q)->val << endl;
+                break;
+            }
+            case TreeGraphSolutionEnum::LevelOrder:
+            {
+                TreeNode *root = new TreeNode(3);
+                root->left = new TreeNode(9);
+                root->right = new TreeNode(20);
+                root->left->left = new TreeNode(6);
+                root->left->right = new TreeNode(2);
+                root->left->right->left = new TreeNode(7);
+                root->left->right->right = new TreeNode(4);
+                root->right->left = new TreeNode(15);
+                root->right->right = new TreeNode(7);
+                vector<vector<int>> result = levelOrder(root);
+                for (int i = 0; i < result.size(); i++)
+                {
+                    cout << "[";
+                    for (int j = 0; j < result[i].size(); j++)
+                    {
+                        cout << result[i][j] << ",";
+                    }
+                    cout << "]" << endl;
+                }
+                break;
+            }
+            case TreeGraphSolutionEnum::MaxDepth:
+            {
+                TreeNode *root = new TreeNode(3);
+                root->left = new TreeNode(9);
+                root->right = new TreeNode(20);
+                root->left->left = new TreeNode(6);
+                root->left->right = new TreeNode(2);
+                root->left->right->left = new TreeNode(7);
+                root->left->right->right = new TreeNode(4);
+                root->right->left = new TreeNode(15);
+                root->right->right = new TreeNode(7);
+                int result = maxDepth(root);
+                cout << result << endl;
+                break;
+            }
+            case TreeGraphSolutionEnum::MinDepth:
+            {
+                TreeNode *root = new TreeNode(3);
+                root->left = new TreeNode(9);
+                root->right = new TreeNode(20);
+                root->left->left = new TreeNode(6);
+                root->left->right = new TreeNode(2);
+                root->left->right->left = new TreeNode(7);
+                root->left->right->right = new TreeNode(4);
+                root->right->left = new TreeNode(15);
+                root->right->right = new TreeNode(7);
+                int result = minDepth(root);
+                cout << result << endl;
                 break;
             }
             default:
@@ -188,5 +242,109 @@ namespace Phoenix
             return FindPorQ(root->right, p, q);
         }
 
+    }
+
+    // 使用BFS计算结果，还有另一种方法是使用DFS（纵向填充result数组）
+    vector<vector<int>> TreeSolution::levelOrder(TreeNode* root)
+    {
+        vector<vector<int>> result;
+        if (root == nullptr)
+        {
+            return result;
+        }
+        queue<TreeNode*> helpQueue;
+        helpQueue.push(root);
+        while (!helpQueue.empty())
+        {
+            int size = helpQueue.size();
+            vector<int> temp;
+            // 这里可以通过当前队列的数量来判断这一层有多少个节点
+            for (int i = 0; i < size; i++)
+            {
+                TreeNode* curNode = helpQueue.front();
+                temp.push_back(curNode->val);
+                helpQueue.pop();
+                // 子节点入队
+                if (curNode->left != nullptr)
+                {
+                    helpQueue.push(curNode->left);
+                }
+                if (curNode->right != nullptr)
+                {
+                    helpQueue.push(curNode->right);
+                }
+            }
+            result.push_back(temp);
+        }
+        return result;
+    }
+
+    int TreeSolution::maxDepth(TreeNode* root)
+    {
+        if (root == nullptr)
+        {
+            return 0;
+        }
+        int maxDepth = 0;
+        queue<TreeNode*> helpQueue;
+        helpQueue.push(root);
+        // BFS遍历完整，找到最深的一层
+        while (!helpQueue.empty())
+        {
+            maxDepth++;
+            int size = helpQueue.size();
+            for (int i = 0; i < size; i++)
+            {
+                TreeNode* curNode = helpQueue.front();
+                helpQueue.pop();
+                // 子节点入队
+                if (curNode->left != nullptr)
+                {
+                    helpQueue.push(curNode->left);
+                }
+                if (curNode->right != nullptr)
+                {
+                    helpQueue.push(curNode->right);
+                }
+            }
+        }
+        return maxDepth;
+    }
+
+    int TreeSolution::minDepth(TreeNode* root)
+    {
+        if (root == nullptr)
+        {
+            return 0;
+        }
+        int minDepth = 0;
+        queue<TreeNode*> bfsQue;
+        bfsQue.push(root);
+        // BFS遍历，找到最早的叶子节点返回就可以了
+        while (!bfsQue.empty())
+        {
+            minDepth++;
+            int size = bfsQue.size();
+            for (int i = 0; i < size; i++)
+            {
+                TreeNode* curNode = bfsQue.front();
+                if (curNode->left == nullptr && curNode->right == nullptr)
+                {
+                    return minDepth;
+                }
+                bfsQue.pop();
+                // 子节点入队
+                if (curNode->left != nullptr)
+                {
+                    bfsQue.push(curNode->left);
+                }
+                if (curNode->right != nullptr)
+                {
+                    bfsQue.push(curNode->right);
+                }
+            }
+           
+        }
+        return minDepth;
     }
 }

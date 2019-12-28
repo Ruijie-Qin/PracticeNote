@@ -12,7 +12,9 @@
 			"ostream": "cpp",
 			"unordered_map": "cpp",
 			"map": "cpp",
-			"iostream": "cpp"
+			"iostream": "cpp",
+			"queue": "cpp",
+			"cstddef": "cpp"
 		}
 	}
 }

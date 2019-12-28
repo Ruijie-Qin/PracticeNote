@@ -30,13 +30,13 @@ int main()
 #pragma endregion
 
 #pragma region Tree和Graph
-	// TreeSolution treeSolution;
-	// treeSolution.RunTestCase(TreeGraphSolutionEnum::NormalLowestComAc);
+	TreeSolution treeSolution;
+	treeSolution.RunTestCase(TreeGraphSolutionEnum::MinDepth);
 #pragma endregion
 
 #pragma region 分治
-	DivideConquerSolution divSolution;
-	divSolution.RunTestCase(DivideConquerSolutionEnum::Majority);
+	// DivideConquerSolution divSolution;
+	// divSolution.RunTestCase(DivideConquerSolutionEnum::Majority);
 #pragma endregion
 
 	return 0;

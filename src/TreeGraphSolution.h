@@ -1,4 +1,6 @@
 #include <cstddef>
+#include <vector>
+using namespace std;
 
 namespace Phoenix
 {
@@ -7,6 +9,9 @@ namespace Phoenix
         ValidBST = 1,
         BSTLowestComAnc,
         NormalLowestComAc,
+        LevelOrder,
+        MaxDepth,
+        MinDepth,
     };
 
     struct TreeNode
@@ -29,6 +34,12 @@ namespace Phoenix
         /// Lowest Common Ancestor of a Binary Tree
         TreeNode* NoramlTreeLowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q);
         TreeNode* NoramlTreeLowestCommonAncestorMethod2(TreeNode* root, TreeNode* p, TreeNode* q);
+        /// 102: Binary Tree Level Order Traversal
+        vector<vector<int>> levelOrder(TreeNode* root);
+        /// 104: Maximum Depth of Binary Tree
+        int maxDepth(TreeNode* root);
+        /// 111: Minimum Depth of Binary Tree
+        int minDepth(TreeNode* root);
     private:
         TreeNode *validBstPreNode;
         // 方法一：中序遍历
