@@ -36,7 +36,7 @@ int main()
 
 #pragma region 分治
 	DivideConquerSolution divSolution;
-	divSolution.RunTestCase(DivideConquerSolutionEnum::PowN);
+	divSolution.RunTestCase(DivideConquerSolutionEnum::Majority);
 #pragma endregion
 
 	return 0;

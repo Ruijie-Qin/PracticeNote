@@ -1,5 +1,21 @@
-# INCLUDE_PATH = -I./src
-# OUTPUT_DIR = ./output
+INCLUDE_PATH = -I./src
+OUTPUT_DIR = ./output
+
+ALL_SRC_CPP = $(wildcard ./src/*.cpp)
+TARGET = $(OUTPUT_DIR)/LeetCodeApplication.out
+
+CC = clang++ $(INCLUDE_PATH) -std=c++11 -g
+
+start: prepare $(TARGET)
+
+prepare:
+	mkdir -p $(OUTPUT_DIR)
+
+$(TARGET):
+	$(CC) $(ALL_SRC_CPP) -o $(TARGET)
+
+clean:
+	rm -rf $(OUTPUT_DIR)
 
 # ALL_OBJ_O = $(OUTPUT_DIR)/DivideConquer.o $(OUTPUT_DIR)/ReverseListSolution.o $(OUTPUT_DIR)/StackQueueSolution.o $(OUTPUT_DIR)/MapSetSolution.o $(OUTPUT_DIR)/TreeGraphSolution.o $(OUTPUT_DIR)/LeetCodeApplication.o
 # TARGET = $(OUTPUT_DIR)/LeetCodeApplication.out
@@ -31,22 +47,3 @@
 
 # $(OUTPUT_DIR)/LeetCodeApplication.o: ./src/LeetCodeApplication.cpp
 # 	$(CC) -c $< -o $@
-
-INCLUDE_PATH = -I./src
-OUTPUT_DIR = ./output
-
-ALL_SRC_CPP = $(wildcard ./src/*.cpp)
-TARGET = $(OUTPUT_DIR)/LeetCodeApplication.out
-
-CC = clang++ $(INCLUDE_PATH) -std=c++11 -g
-
-start: prepare $(TARGET)
-
-prepare:
-	mkdir -p $(OUTPUT_DIR)
-
-$(TARGET):
-	$(CC) $(ALL_SRC_CPP) -o $(TARGET)
-
-clean:
-	rm -rf $(OUTPUT_DIR)

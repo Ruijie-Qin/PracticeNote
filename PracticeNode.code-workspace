@@ -9,7 +9,10 @@
 			"vector": "cpp",
 			"hash_map": "cpp",
 			"algorithm": "cpp",
-			"ostream": "cpp"
+			"ostream": "cpp",
+			"unordered_map": "cpp",
+			"map": "cpp",
+			"iostream": "cpp"
 		}
 	}
 }
