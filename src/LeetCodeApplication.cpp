@@ -6,6 +6,8 @@
 #include "MapSetSolution.h"
 #include "TreeGraphSolution.h"
 #include "DivideConquer.h"
+#include "SearchSolution.h"
+
 #include <iostream>
 
 using namespace std;
@@ -30,13 +32,18 @@ int main()
 #pragma endregion
 
 #pragma region Tree和Graph
-	TreeSolution treeSolution;
-	treeSolution.RunTestCase(TreeGraphSolutionEnum::MinDepth);
+	// TreeSolution treeSolution;
+	// treeSolution.RunTestCase(TreeGraphSolutionEnum::MinDepth);
 #pragma endregion
 
 #pragma region 分治
 	// DivideConquerSolution divSolution;
 	// divSolution.RunTestCase(DivideConquerSolutionEnum::Majority);
+#pragma endregion
+
+#pragma region 搜索
+	SearchSolution searcholution;
+	searcholution.RunTestCase(SearchSolutionEnum::GenParentheses);
 #pragma endregion
 
 	return 0;
