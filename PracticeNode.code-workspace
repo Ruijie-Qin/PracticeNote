@@ -14,7 +14,8 @@
 			"map": "cpp",
 			"iostream": "cpp",
 			"queue": "cpp",
-			"cstddef": "cpp"
+			"cstddef": "cpp",
+			"iosfwd": "cpp"
 		}
 	}
 }
