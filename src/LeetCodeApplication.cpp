@@ -43,7 +43,7 @@ int main()
 
 #pragma region 搜索
 	SearchSolution searcholution;
-	searcholution.RunTestCase(SearchSolutionEnum::SolveSudoki);
+	searcholution.RunTestCase(SearchSolutionEnum::mysqrt);
 #pragma endregion
 
 	return 0;

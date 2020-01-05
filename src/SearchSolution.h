@@ -13,6 +13,7 @@ namespace Phoenix
         NQueen2,
         ValidSudoki,
         SolveSudoki,
+        mysqrt,
     };
 
     struct SudokuCandidate
@@ -37,6 +38,8 @@ namespace Phoenix
         bool isValidSudoku(vector<vector<char>>& board);
         /// 37. Sudoku Solver
         void solveSudoku(vector<vector<char>>& board);
+        /// 69. Sqrt(x)
+        int mySqrt(int x);
     private:
         void GenParenthesisHelper(vector<string> &result, int n, int leftUsed, int rightUsed, string currentResult);
 
@@ -61,5 +64,7 @@ namespace Phoenix
         void placeNum(int row, int col, int num, bool isPlace);
         void solveSudokuHelper(vector<vector<char>>& board, int row, int col);
         void placeNextNum(vector<vector<char>>& board, int row, int col);
+        /// sqrt, precise精度
+        double mySqrtHelper(double x, double precise);
     };
 }

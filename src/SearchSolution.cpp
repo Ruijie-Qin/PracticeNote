@@ -94,6 +94,13 @@ void SearchSolution::RunTestCase(SearchSolutionEnum solutionType)
         }
         break;
     }
+    case SearchSolutionEnum::mysqrt:
+    {
+        double x = 7;
+        cout << mySqrtHelper(x, 1e-10) << endl;
+        cout << mySqrt(x) << endl;
+        break;
+    }
     default:
         break;
     }
@@ -351,6 +358,47 @@ void SearchSolution::solveSudokuHelper(vector<vector<char>>& board, int row, int
     {
         placeNextNum(board, row, col);
     }
+}
+
+int SearchSolution::mySqrt(int x)
+{
+    if (x == 0 || x == 1)
+    {
+        return x;
+    }
+    int result = (int)mySqrtHelper(x, 1e-9) + 1;
+    cout << "res=" << result << endl;
+    if (result > x / result)
+    {
+        return result - 1;
+    }
+    else
+    {
+        return result;
+    }
+}
+
+double SearchSolution::mySqrtHelper(double x, double precise)
+{
+    double left = 0;
+    double right = x;
+    while (left < right && (right - left) > precise)
+    {
+        double mid = left + (right - left) / 2;
+        if (mid == x / mid)
+        {
+            return mid;
+        }
+        else if (mid < x / mid)
+        {
+            left = mid;
+        }
+        else
+        {
+            right = mid;
+        }
+    }
+    return (right + left) / 2;
 }
 
 } // namespace Phoenix
