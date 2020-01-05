@@ -1,5 +1,6 @@
 #include <cstddef>
 #include <vector>
+#include <string>
 using namespace std;
 
 namespace Phoenix
@@ -12,6 +13,7 @@ namespace Phoenix
         LevelOrder,
         MaxDepth,
         MinDepth,
+        TreeTrie,
     };
 
     struct TreeNode
@@ -48,5 +50,31 @@ namespace Phoenix
         bool validBSTHelper2(TreeNode* root, long min, long max);
         // NoramlTreeLowestCommonAncestorHelp
         TreeNode* FindPorQ(TreeNode* root, TreeNode* p, TreeNode* q);
+    };
+
+    class TrieNode
+    {
+    public:
+        char val;
+        bool isWord = false;
+        TrieNode* children[26] = {nullptr};
+
+        TrieNode(char c);
+    };
+
+    class Trie {
+    public:
+        TrieNode *root;
+        /** Initialize your data structure here. */
+        Trie();
+        
+        /** Inserts a word into the trie. */
+        void insert(string word);
+        
+        /** Returns if the word is in the trie. */
+        bool search(string word);
+        
+        /** Returns if there is any word in the trie that starts with the given prefix. */
+        bool startsWith(string prefix);
     };
 }

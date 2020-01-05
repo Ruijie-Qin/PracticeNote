@@ -105,6 +105,17 @@ namespace Phoenix
                 cout << result << endl;
                 break;
             }
+            case TreeGraphSolutionEnum::TreeTrie:
+            {
+                Trie *trie = new Trie();
+                trie->insert("apple");
+                cout << trie->search("apple") << endl;
+                cout << trie->search("app") << endl;
+                cout << trie->startsWith("app") << endl;
+                trie->insert("app");
+                cout << trie->search("appl") << endl;
+                break;
+            }
             default:
                 break;
         }
@@ -347,4 +358,64 @@ namespace Phoenix
         }
         return minDepth;
     }
+    #pragma region 字典树
+    TrieNode::TrieNode(char c): val(c)
+    {
+    }
+
+    /** Initialize your data structure here. */
+    Trie::Trie() 
+    {
+        root = new TrieNode(' ');
+    }
+    
+    /** Inserts a word into the trie. */
+    void Trie::insert(string word) 
+    {
+        TrieNode* currentNode = root;
+        for (char c : word)
+        {
+            int index = (int)(c - 'a');
+            if ((currentNode->children)[c - 'a'] == nullptr)
+            {
+                (currentNode->children)[c - 'a'] = new TrieNode(c);
+            }
+            currentNode = (currentNode->children)[c - 'a'];
+        }
+        currentNode->isWord = true;
+    }
+    
+    /** Returns if the word is in the trie. */
+    bool Trie::search(string word)
+    {
+        TrieNode* currentNode = root;
+        // 这样写高效一些
+        for (char c : word)
+        {
+            int index = (int)(c - 'a');
+            if (currentNode->children[index] == nullptr)
+            {
+                return false;
+            }
+            currentNode = currentNode->children[index];
+        }
+        return currentNode->isWord;
+    }
+    
+    /** Returns if there is any word in the trie that starts with the given prefix. */
+    bool Trie::startsWith(string prefix) 
+    {
+        TrieNode* currentNode = root;
+        for (char c : prefix)
+        {
+            int index = (int)(c-'a');
+            if (currentNode->children[index] == nullptr)
+            {
+                return false;
+            }
+            currentNode = currentNode->children[index];
+        }
+        return true;
+    }
+    #pragma endregion
 }

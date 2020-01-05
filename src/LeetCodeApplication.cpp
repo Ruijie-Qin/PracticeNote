@@ -32,8 +32,8 @@ int main()
 #pragma endregion
 
 #pragma region Tree和Graph
-	// TreeSolution treeSolution;
-	// treeSolution.RunTestCase(TreeGraphSolutionEnum::MinDepth);
+	TreeSolution treeSolution;
+	treeSolution.RunTestCase(TreeGraphSolutionEnum::TreeTrie);
 #pragma endregion
 
 #pragma region 分治
@@ -42,8 +42,8 @@ int main()
 #pragma endregion
 
 #pragma region 搜索
-	SearchSolution searcholution;
-	searcholution.RunTestCase(SearchSolutionEnum::mysqrt);
+	// SearchSolution searcholution;
+	// searcholution.RunTestCase(SearchSolutionEnum::mysqrt);
 #pragma endregion
 
 	return 0;
