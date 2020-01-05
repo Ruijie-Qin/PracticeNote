@@ -1,6 +1,8 @@
 #include <cstddef>
 #include <vector>
+#include <set>
 #include <string>
+#include <iostream>
 using namespace std;
 
 namespace Phoenix
@@ -14,6 +16,8 @@ namespace Phoenix
         MaxDepth,
         MinDepth,
         TreeTrie,
+        WordSearch1,
+        WordSearch2,
     };
 
     struct TreeNode
@@ -22,6 +26,29 @@ namespace Phoenix
         TreeNode *left;
         TreeNode *right;
         TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+    };
+
+    class TrieNode
+    {
+    public:
+        bool isWord = false;
+        TrieNode* children[26] = {nullptr};
+    };
+
+    class Trie {
+    public:
+        TrieNode *root;
+        /** Initialize your data structure here. */
+        Trie();
+        
+        /** Inserts a word into the trie. */
+        void insert(string word);
+        
+        /** Returns if the word is in the trie. */
+        bool search(string word);
+        
+        /** Returns if there is any word in the trie that starts with the given prefix. */
+        bool startsWith(string prefix);
     };
 
     class TreeSolution
@@ -42,6 +69,10 @@ namespace Phoenix
         int maxDepth(TreeNode* root);
         /// 111: Minimum Depth of Binary Tree
         int minDepth(TreeNode* root);
+        /// 79. Word Search
+        bool exist(vector<vector<char>>& board, string word);
+        /// 212. Word Search II
+        vector<string> findWords(vector<vector<char>>& board, vector<string>& words);
     private:
         TreeNode *validBstPreNode;
         // 方法一：中序遍历
@@ -50,31 +81,11 @@ namespace Phoenix
         bool validBSTHelper2(TreeNode* root, long min, long max);
         // NoramlTreeLowestCommonAncestorHelp
         TreeNode* FindPorQ(TreeNode* root, TreeNode* p, TreeNode* q);
+        // wordSearch
+        bool wordSearchDfs(vector<vector<char>>& board, int i, int j, const string &word, int index);
+        // wordSearch2
+        void wordSearch2Dfs(vector<vector<char>>& board, int i, int j, TrieNode *curNode, set<string> &result, string curString);
     };
 
-    class TrieNode
-    {
-    public:
-        char val;
-        bool isWord = false;
-        TrieNode* children[26] = {nullptr};
-
-        TrieNode(char c);
-    };
-
-    class Trie {
-    public:
-        TrieNode *root;
-        /** Initialize your data structure here. */
-        Trie();
-        
-        /** Inserts a word into the trie. */
-        void insert(string word);
-        
-        /** Returns if the word is in the trie. */
-        bool search(string word);
-        
-        /** Returns if there is any word in the trie that starts with the given prefix. */
-        bool startsWith(string prefix);
-    };
+    
 }

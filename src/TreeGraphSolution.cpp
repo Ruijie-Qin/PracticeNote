@@ -116,6 +116,35 @@ namespace Phoenix
                 cout << trie->search("appl") << endl;
                 break;
             }
+            case TreeGraphSolutionEnum::WordSearch1:
+            {
+                vector<vector<char>> board = {
+                    {'A','B','C','E'},
+                    {'S','F','C','S'},
+                    {'A','D','E','E'}
+                    };
+                cout << exist(board, "DFSA") << endl;
+                cout << exist(board, "SEC") << endl;
+                cout << exist(board, "ECFC") << endl;
+                break;
+            }
+            case TreeGraphSolutionEnum::WordSearch2:
+            {
+                vector<vector<char>> board = {
+                    {'o','a','a','n'},
+                    {'e','t','a','e'},
+                    {'i','h','k','r'},
+                    {'i','f','l','v'}
+                    };
+                vector<string> words = {"oaa","oaan","eat","rain"};
+                auto result = findWords(board, words);
+                cout << "size=" << result.size() << endl;
+                for (auto word : result)
+                {
+                    cout << word << endl;
+                }
+                break;
+            }
             default:
                 break;
         }
@@ -359,26 +388,24 @@ namespace Phoenix
         return minDepth;
     }
     #pragma region 字典树
-    TrieNode::TrieNode(char c): val(c)
-    {
-    }
 
     /** Initialize your data structure here. */
     Trie::Trie() 
     {
-        root = new TrieNode(' ');
+        root = new TrieNode();
     }
     
     /** Inserts a word into the trie. */
     void Trie::insert(string word) 
     {
         TrieNode* currentNode = root;
+        // 这样写高效一些
         for (char c : word)
         {
             int index = (int)(c - 'a');
             if ((currentNode->children)[c - 'a'] == nullptr)
             {
-                (currentNode->children)[c - 'a'] = new TrieNode(c);
+                (currentNode->children)[c - 'a'] = new TrieNode();
             }
             currentNode = (currentNode->children)[c - 'a'];
         }
@@ -418,4 +445,115 @@ namespace Phoenix
         return true;
     }
     #pragma endregion
+
+    bool TreeSolution::exist(vector<vector<char>>& board, string word) 
+    {
+        if (board.size() <= 0)
+        {
+            return false;
+        }
+        for (int i = 0; i < board.size(); i++)
+        {
+            for (int j = 0; j < board[i].size(); j++)
+            {
+                if (wordSearchDfs(board, i, j, word, 0))
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    bool TreeSolution::wordSearchDfs(vector<vector<char>>& board, int i, int j, const string &word, int index)
+    {
+        if (index == word.size())
+        {
+            return true;
+        }
+
+        if (i < 0 || j < 0 || i >= board.size() || j >= board[i].size())
+        {
+            return false;
+        }
+
+        if (board[i][j] != word[index])
+        {
+            return false;
+        }
+
+        char tmp = board[i][j];
+        board[i][j] = '@';
+        if (wordSearchDfs(board, i-1, j, word, index+1) ||
+            wordSearchDfs(board, i+1, j, word, index+1) ||
+            wordSearchDfs(board, i, j-1, word, index+1) ||
+            wordSearchDfs(board, i, j+1, word, index+1))
+        {
+            board[i][j] = tmp;
+            return true;
+        }
+        else
+        {
+            board[i][j] = tmp;
+            return false;
+        }
+    }
+
+    vector<string> TreeSolution::findWords(vector<vector<char>>& board, vector<string>& words) 
+    {
+        Trie *root = new Trie();
+        // 首先构造一个字典树, 用于在一次dfs中就找到结果
+        for (auto word : words)
+        {
+            root->insert(word);
+        }
+        set<string> result;
+        for (int i = 0; i < board.size(); i++)
+        {
+            for (int j = 0; j < board[i].size(); j++)
+            {
+                wordSearch2Dfs(board, i, j, root->root, result, "");
+            }
+        }
+        vector<string> res;
+        for (auto word : result)
+        {
+            res.push_back(word);
+        }
+        return res;
+    }    
+
+    void TreeSolution::wordSearch2Dfs(vector<vector<char>>& board, int i, int j, TrieNode *curNode, set<string> &result, string curString)
+    {
+        // 还有个更优的方法，就是TrieNode在构建的时候保存是第几个单词，这样就不用curString了，只需要从原words数组读就行
+        if (i < 0 || j < 0 || i >= board.size() || j >= board[i].size())
+        {
+            return;
+        }
+
+        if (board[i][j] == '@')
+        {
+            return;
+        }
+
+        char tmp = board[i][j];
+        curString = curString + tmp;
+        int index = tmp - 'a';
+        if (curNode->children[index] == nullptr)
+        {
+            return;
+        }
+
+        if (curNode->children[index]->isWord)
+        {
+            result.insert(curString);
+        }
+        
+        board[i][j] = '@';
+        wordSearch2Dfs(board, i-1, j, curNode->children[index], result, curString);
+        wordSearch2Dfs(board, i+1, j, curNode->children[index], result, curString);
+        wordSearch2Dfs(board, i, j-1, curNode->children[index], result, curString);
+        wordSearch2Dfs(board, i, j+1, curNode->children[index], result, curString);
+        board[i][j] = tmp;
+    }
 }

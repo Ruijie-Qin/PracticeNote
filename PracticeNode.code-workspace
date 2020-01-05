@@ -15,7 +15,12 @@
 			"iostream": "cpp",
 			"queue": "cpp",
 			"cstddef": "cpp",
-			"iosfwd": "cpp"
+			"iosfwd": "cpp",
+			"string": "cpp",
+			"bitset": "cpp",
+			"functional": "cpp",
+			"optional": "cpp",
+			"system_error": "cpp"
 		}
 	}
 }

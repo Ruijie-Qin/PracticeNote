@@ -33,7 +33,7 @@ int main()
 
 #pragma region Tree和Graph
 	TreeSolution treeSolution;
-	treeSolution.RunTestCase(TreeGraphSolutionEnum::TreeTrie);
+	treeSolution.RunTestCase(TreeGraphSolutionEnum::WordSearch2);
 #pragma endregion
 
 #pragma region 分治
