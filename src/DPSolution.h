@@ -1,16 +1,19 @@
-
+#include <vector>
+using namespace std;
 
 namespace Phoenix
 {
     enum DPSolutionEnum
     {
-        DP1 = 1,
+        ClimbingStairs = 1,
     };
 
     class DPSolution
     {
     public:
         /// 执行测试案例
-        void RunTestCase(DPSolutionEnum solutionType = DPSolutionEnum::DP1);
+        void RunTestCase(DPSolutionEnum solutionType = DPSolutionEnum::ClimbingStairs);
+        /// 70. Climbing Stairs
+        int climbStairs(int n);
     };
 }

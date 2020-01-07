@@ -7,7 +7,7 @@
 #include "TreeGraphSolution.h"
 #include "DivideConquer.h"
 #include "SearchSolution.h"
-
+#include "BitSolution.h"
 #include <iostream>
 
 using namespace std;
@@ -32,8 +32,8 @@ int main()
 #pragma endregion
 
 #pragma region Tree和Graph
-	TreeSolution treeSolution;
-	treeSolution.RunTestCase(TreeGraphSolutionEnum::WordSearch2);
+	// TreeSolution treeSolution;
+	// treeSolution.RunTestCase(TreeGraphSolutionEnum::WordSearch2);
 #pragma endregion
 
 #pragma region 分治
@@ -44,6 +44,11 @@ int main()
 #pragma region 搜索
 	// SearchSolution searcholution;
 	// searcholution.RunTestCase(SearchSolutionEnum::mysqrt);
+#pragma endregion
+
+#pragma region 位运算
+	BitSolution bitsolution;
+	bitsolution.RunTestCase(BitSolutionEnum::CountingBits);
 #pragma endregion
 
 	return 0;

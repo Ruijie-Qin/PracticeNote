@@ -20,7 +20,8 @@
 			"bitset": "cpp",
 			"functional": "cpp",
 			"optional": "cpp",
-			"system_error": "cpp"
+			"system_error": "cpp",
+			"cstdint": "cpp"
 		}
 	}
 }
