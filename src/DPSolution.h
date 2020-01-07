@@ -5,15 +5,17 @@ namespace Phoenix
 {
     enum DPSolutionEnum
     {
-        ClimbingStairs = 1,
+        Triangle = 1,
     };
 
     class DPSolution
     {
     public:
         /// 执行测试案例
-        void RunTestCase(DPSolutionEnum solutionType = DPSolutionEnum::ClimbingStairs);
+        void RunTestCase(DPSolutionEnum solutionType);
         /// 70. Climbing Stairs
         int climbStairs(int n);
+        /// 120. Triangle
+        int minimumTotal(vector<vector<int>>& triangle);
     };
 }

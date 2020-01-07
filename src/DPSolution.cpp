@@ -1,13 +1,27 @@
 #include "DPSolution.h"
-
+#include <iostream>
+using namespace std;
 namespace Phoenix
 {
     void DPSolution::RunTestCase(DPSolutionEnum solutionType)
     {
-
+        switch (solutionType)
+        {
+            case DPSolutionEnum::Triangle:
+            {
+                vector<vector<int>> input = {
+                    {2},
+                    {6,4},
+                    {1,5,7},
+                    {1,1,8,3}
+                };
+                cout << minimumTotal(input) << endl;
+                break;
+            }
+        }
     }
 
-     int climbStairs(int n) 
+     int DPSolution::climbStairs(int n) 
      {
         if (n <= 0)
         {
@@ -29,5 +43,18 @@ namespace Phoenix
             second = third;
         } 
         return third;
+    }
+
+    int DPSolution::minimumTotal(vector<vector<int>>& triangle) 
+    {
+        vector<int> helper = triangle[triangle.size()-1];
+        for (int i = triangle.size() - 2; i >= 0; i--)
+        {
+            for (int j = 0; j < triangle[i].size(); j++)
+            {
+                helper[j] = triangle[i][j] + min(helper[j], helper[j+1]);
+            }
+        }
+        return helper[0];
     }
 }

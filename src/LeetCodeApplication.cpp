@@ -8,6 +8,8 @@
 #include "DivideConquer.h"
 #include "SearchSolution.h"
 #include "BitSolution.h"
+#include "DPSolution.h"
+
 #include <iostream>
 
 using namespace std;
@@ -47,8 +49,13 @@ int main()
 #pragma endregion
 
 #pragma region 位运算
-	BitSolution bitsolution;
-	bitsolution.RunTestCase(BitSolutionEnum::CountingBits);
+	// BitSolution bitsolution;
+	// bitsolution.RunTestCase(BitSolutionEnum::CountingBits);
+#pragma endregion
+
+#pragma region DP
+	DPSolution dpSolution;
+	dpSolution.RunTestCase(DPSolutionEnum::Triangle);
 #pragma endregion
 
 	return 0;
