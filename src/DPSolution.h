@@ -6,6 +6,7 @@ namespace Phoenix
     enum DPSolutionEnum
     {
         Triangle = 1,
+        MaxProductSubAry,
     };
 
     class DPSolution
@@ -17,5 +18,7 @@ namespace Phoenix
         int climbStairs(int n);
         /// 120. Triangle
         int minimumTotal(vector<vector<int>>& triangle);
+        /// 152. Maximum Product Subarray
+        int maxProduct(vector<int>& nums);
     };
 }

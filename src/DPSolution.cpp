@@ -18,6 +18,16 @@ namespace Phoenix
                 cout << minimumTotal(input) << endl;
                 break;
             }
+            case DPSolutionEnum::MaxProductSubAry:
+            {
+                vector<int> nums = {2,-3,-4,-2};
+                cout << maxProduct(nums) << endl;
+                vector<int> nums2 = {-2,0,-2};
+                cout << maxProduct(nums2) << endl;
+                vector<int> nums3 = {2,3,-2,4};
+                cout << maxProduct(nums3) << endl;
+                break;
+            }
         }
     }
 
@@ -56,5 +66,31 @@ namespace Phoenix
             }
         }
         return helper[0];
+    }
+
+    int DPSolution::maxProduct(vector<int>& nums)
+    {
+        if (nums.size() <= 0)
+        {
+            return 0;
+        }
+        vector<vector<int>> dpAry(2, vector<int>{0, 0});
+        // [0]存最大值，[1]存最小值
+        dpAry[0][0] = dpAry[0][1] = nums[0];
+        int res = nums[0];
+        for (int i = 1; i < nums.size(); i++)
+        {
+            int num = nums[i];
+            // 循环复用数组
+            int x = i%2;
+            int y = (i+1)%2;
+            dpAry[x][0] = num >= 0 ? max(num, dpAry[y][0] * num) : max(num, dpAry[y][1] * num);
+            dpAry[x][1] = num >= 0 ? min(num, dpAry[y][1] * num) : min(num, dpAry[y][0] * num);
+            if (dpAry[x][0] > res)
+            {
+                res = dpAry[x][0];
+            }
+        }
+        return res;
     }
 }
