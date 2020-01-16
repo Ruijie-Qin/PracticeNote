@@ -55,7 +55,7 @@ int main()
 
 #pragma region DP
 	DPSolution dpSolution;
-	dpSolution.RunTestCase(DPSolutionEnum::SellStockIV);
+	dpSolution.RunTestCase(DPSolutionEnum::LIS);
 #pragma endregion
 
 	return 0;

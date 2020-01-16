@@ -9,6 +9,7 @@ namespace Phoenix
         Triangle = 1,
         MaxProductSubAry,
         SellStockIV,
+        LIS,
     };
 
     class DPSolution
@@ -28,6 +29,9 @@ namespace Phoenix
         int maxProfit_3(vector<int>& prices);
         /// 188. Best Time to Buy and Sell Stock IV
         int maxProfit(int k, vector<int>& prices);
+        /// 300. Longest Increasing Subsequence
+        int lengthOfLIS_1(vector<int>& nums); // DP
+        int lengthOfLIS_2(vector<int>& nums); // O(Nlog(N))
     private:
         /// 122. Best Time to Buy and Sell Stock II
         // 无限次数的交易，没有冷却时间和交易费

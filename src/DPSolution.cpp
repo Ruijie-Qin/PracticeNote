@@ -37,7 +37,64 @@ void DPSolution::RunTestCase(DPSolutionEnum solutionType)
         cout << maxProfit(5, nums2) << endl;
         break;
     }
+    case DPSolutionEnum::LIS:
+    {
+        vector<int> nums = {10,9,2,5,3,7,101,18};
+        cout << lengthOfLIS_2(nums) << endl;
+        break;
     }
+    }
+}
+
+int DPSolution::lengthOfLIS_1(vector<int>& nums) 
+{
+    if (nums.size() <= 1)
+    {
+        return nums.size();
+    }
+
+    int res = 1;
+    vector<int> dp;
+    for (int i = 0; i < nums.size(); i++)
+    {
+        dp.push_back(1);
+    }
+
+    for (int i = 1; i < nums.size(); i++)
+    {
+        for (int j = 0; j < i; j++)
+        {
+            if (nums[j] < nums[i])
+            {
+                dp[i] = max(dp[j] + 1, dp[i]);
+            }
+        }
+        res = max(dp[i], res);
+    }
+    return res;
+}
+
+int DPSolution::lengthOfLIS_2(vector<int>& nums) 
+{
+    if (nums.size() <= 1)
+    {
+        return nums.size();
+    }
+
+    vector<int> lis;
+    for (int i = 0; i < nums.size(); i++)
+    {
+        vector<int>::iterator it = lower_bound(lis.begin(), lis.end(), nums[i]);
+        if (it == lis.end())
+        {
+            lis.push_back(nums[i]);
+        }
+        else
+        {
+            *it = nums[i];
+        }
+    }
+    return lis.size();
 }
 
 int DPSolution::climbStairs(int n)
