@@ -21,7 +21,8 @@
 			"functional": "cpp",
 			"optional": "cpp",
 			"system_error": "cpp",
-			"cstdint": "cpp"
+			"cstdint": "cpp",
+			"set": "cpp"
 		}
 	}
 }

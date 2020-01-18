@@ -2,6 +2,7 @@
 #include <string>
 #include <set>
 #include <string>
+#include <iostream>
 using namespace std;
 
 namespace Phoenix
@@ -14,6 +15,7 @@ namespace Phoenix
         ValidSudoki,
         SolveSudoki,
         mysqrt,
+        friendCircleNum,
     };
 
     struct SudokuCandidate
@@ -40,6 +42,10 @@ namespace Phoenix
         void solveSudoku(vector<vector<char>>& board);
         /// 69. Sqrt(x)
         int mySqrt(int x);
+        /// 200. Number of Islands
+        int numIslands(vector<vector<char>>& grid);
+        /// 547. Friend Circles
+        int findCircleNum(vector<vector<int>>& M);
     private:
         void GenParenthesisHelper(vector<string> &result, int n, int leftUsed, int rightUsed, string currentResult);
 
@@ -66,5 +72,9 @@ namespace Phoenix
         void placeNextNum(vector<vector<char>>& board, int row, int col);
         /// sqrt, precise精度
         double mySqrtHelper(double x, double precise);
+        /// 200. Number of Islands
+        void numIsLandsDFS(vector<vector<char>>& grid, int i, int j, int row, int col, set<int> &numIslandsVisited);
+        /// 547. Friend Circles
+        void findCircleNumDFC(vector<vector<int>>& M, int i, int j, int row, int col);
     };
 }

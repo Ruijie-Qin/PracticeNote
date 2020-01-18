@@ -44,8 +44,8 @@ int main()
 #pragma endregion
 
 #pragma region 搜索
-	// SearchSolution searcholution;
-	// searcholution.RunTestCase(SearchSolutionEnum::mysqrt);
+	SearchSolution searcholution;
+	searcholution.RunTestCase(SearchSolutionEnum::friendCircleNum);
 #pragma endregion
 
 #pragma region 位运算
@@ -54,8 +54,8 @@ int main()
 #pragma endregion
 
 #pragma region DP
-	DPSolution dpSolution;
-	dpSolution.RunTestCase(DPSolutionEnum::LIS);
+	// DPSolution dpSolution;
+	// dpSolution.RunTestCase(DPSolutionEnum::LIS);
 #pragma endregion
 
 	return 0;

@@ -308,4 +308,53 @@ int DPSolution::maxProfit_K(vector<int> &prices, int K, int cd, int fee)
     }
     return dp[n - 1][K][0];
 }
+
+int DPSolution::coinChange(vector<int>& coins, int amount) 
+{
+    if (amount <= 0)
+    {
+        return 0;
+    } 
+    vector<int> dp(amount + 1, amount + 1);
+    dp[0] = 0;
+    for (int i = 1; i <= amount; i++)
+    {
+        for (int j = 0; j < coins.size(); j++)
+        {
+            if (i - coins[j] >= 0)
+            {
+                dp[i] = min(dp[i], dp[i-coins[j]] + 1);
+            }
+        }
+    }
+    return dp[amount] > amount ? -1 : dp[amount];
+}
+
+int DPSolution::minDistance(string word1, string word2) 
+{
+    int n = word1.size();
+    int m = word2.size();
+    int dp[n+1][m+1];
+    for (int i = 0; i <= n; i++)
+    {
+        dp[i][0] = i;
+    }
+    for (int i = 0; i <= m; i++)
+    {
+        dp[0][i] = i;
+    }
+
+    for (int i = 1; i <= n; i++)
+    {
+        for (int j = 1; j <= m; j++)
+        {
+            // 注意i，j比较的其实是word1[i-1], word2[j-1]
+            int op1 = dp[i-1][j-1] + (word1[i-1] == word2[j-1] ? 0 : 1);
+            int op2 = dp[i-1][j] + 1;
+            int op3 = dp[i][j-1] + 1;
+            dp[i][j] = min(min(op1, op2), op3);
+        }
+    }
+    return dp[n][m];
+}
 } // namespace Phoenix

@@ -44,43 +44,40 @@ void SearchSolution::RunTestCase(SearchSolutionEnum solutionType)
     case SearchSolutionEnum::ValidSudoki:
     {
         vector<vector<char>> board = {
-        {'5','3','.','.','7','.','.','.','.'},
-        {'6','.','.','1','9','5','.','.','.'},
-        {'.','9','8','.','.','.','.','6','.'},
-        {'8','.','.','.','6','.','.','.','3'},
-        {'4','.','.','8','.','3','.','.','1'},
-        {'7','.','.','.','2','.','.','.','6'},
-        {'.','6','.','.','.','.','2','8','.'},
-        {'.','.','.','4','1','9','.','.','5'},
-        {'.','.','.','.','8','.','.','7','9'}
-                                        };
+            {'5', '3', '.', '.', '7', '.', '.', '.', '.'},
+            {'6', '.', '.', '1', '9', '5', '.', '.', '.'},
+            {'.', '9', '8', '.', '.', '.', '.', '6', '.'},
+            {'8', '.', '.', '.', '6', '.', '.', '.', '3'},
+            {'4', '.', '.', '8', '.', '3', '.', '.', '1'},
+            {'7', '.', '.', '.', '2', '.', '.', '.', '6'},
+            {'.', '6', '.', '.', '.', '.', '2', '8', '.'},
+            {'.', '.', '.', '4', '1', '9', '.', '.', '5'},
+            {'.', '.', '.', '.', '8', '.', '.', '7', '9'}};
         cout << isValidSudoku(board) << endl;
         break;
     }
     case SearchSolutionEnum::SolveSudoki:
     {
         vector<vector<char>> board = {
-        {'5','3','.','.','7','.','.','.','.'},
-        {'6','.','.','1','9','5','.','.','.'},
-        {'.','9','8','.','.','.','.','6','.'},
-        {'8','.','.','.','6','.','.','.','3'},
-        {'4','.','.','8','.','3','.','.','1'},
-        {'7','.','.','.','2','.','.','.','6'},
-        {'.','6','.','.','.','.','2','8','.'},
-        {'.','.','.','4','1','9','.','.','5'},
-        {'.','.','.','.','8','.','.','7','9'}
-                                        };
+            {'5', '3', '.', '.', '7', '.', '.', '.', '.'},
+            {'6', '.', '.', '1', '9', '5', '.', '.', '.'},
+            {'.', '9', '8', '.', '.', '.', '.', '6', '.'},
+            {'8', '.', '.', '.', '6', '.', '.', '.', '3'},
+            {'4', '.', '.', '8', '.', '3', '.', '.', '1'},
+            {'7', '.', '.', '.', '2', '.', '.', '.', '6'},
+            {'.', '6', '.', '.', '.', '.', '2', '8', '.'},
+            {'.', '.', '.', '4', '1', '9', '.', '.', '5'},
+            {'.', '.', '.', '.', '8', '.', '.', '7', '9'}};
         vector<vector<char>> board1 = {
-        {'.','.','9','7','4','8','.','.','.'},
-        {'7','.','.','.','.','.','.','.','.'},
-        {'.','2','.','1','.','9','.','.','.'},
-        {'.','.','7','.','.','.','2','4','.'},
-        {'.','6','4','.','1','.','5','9','.'},
-        {'.','9','8','.','.','.','3','.','.'},
-        {'.','.','.','8','.','3','.','2','.'},
-        {'.','.','.','.','.','.','.','.','6'},
-        {'.','.','.','2','7','5','9','.','.'}
-        };
+            {'.', '.', '9', '7', '4', '8', '.', '.', '.'},
+            {'7', '.', '.', '.', '.', '.', '.', '.', '.'},
+            {'.', '2', '.', '1', '.', '9', '.', '.', '.'},
+            {'.', '.', '7', '.', '.', '.', '2', '4', '.'},
+            {'.', '6', '4', '.', '1', '.', '5', '9', '.'},
+            {'.', '9', '8', '.', '.', '.', '3', '.', '.'},
+            {'.', '.', '.', '8', '.', '3', '.', '2', '.'},
+            {'.', '.', '.', '.', '.', '.', '.', '.', '6'},
+            {'.', '.', '.', '2', '7', '5', '9', '.', '.'}};
         auto test = board;
         solveSudoku(test);
         for (int i = 0; i < test.size(); i++)
@@ -99,6 +96,15 @@ void SearchSolution::RunTestCase(SearchSolutionEnum solutionType)
         double x = 7;
         cout << mySqrtHelper(x, 1e-10) << endl;
         cout << mySqrt(x) << endl;
+        break;
+    }
+    case SearchSolutionEnum::friendCircleNum:
+    {
+        vector<vector<int>> M = {
+            {1, 1, 0},
+            {1, 1, 0},
+            {0, 0, 1}};
+        cout << findCircleNum(M) << endl;
         break;
     }
     default:
@@ -270,7 +276,7 @@ bool SearchSolution::isValidSudokuHelper(vector<vector<char>> &board, int row, i
     return res;
 }
 
-void SearchSolution::solveSudoku(vector<vector<char>>& board) 
+void SearchSolution::solveSudoku(vector<vector<char>> &board)
 {
     isSolvedSudoku = false;
     for (int i = 0; i < 9; i++)
@@ -290,7 +296,7 @@ void SearchSolution::solveSudoku(vector<vector<char>>& board)
             char c = board[i][j];
             if (c != '.')
             {
-                placeNum(i, j, c-'0', true);
+                placeNum(i, j, c - '0', true);
             }
         }
     }
@@ -315,10 +321,10 @@ void SearchSolution::placeNum(int row, int col, int num, bool isPlace)
 
 bool SearchSolution::canPlace(int row, int col, int num)
 {
-    return ((rowFill[row][num] + colFill[col][num] + subBoxFill[(row/3)*3+col/3][num]) == 0);
+    return ((rowFill[row][num] + colFill[col][num] + subBoxFill[(row / 3) * 3 + col / 3][num]) == 0);
 }
 
-void SearchSolution::placeNextNum(vector<vector<char>>& board, int row, int col)
+void SearchSolution::placeNextNum(vector<vector<char>> &board, int row, int col)
 {
     if (row == 8 && col == 8)
     {
@@ -335,7 +341,7 @@ void SearchSolution::placeNextNum(vector<vector<char>>& board, int row, int col)
         solveSudokuHelper(board, row, col + 1);
     }
 }
-void SearchSolution::solveSudokuHelper(vector<vector<char>>& board, int row, int col)
+void SearchSolution::solveSudokuHelper(vector<vector<char>> &board, int row, int col)
 {
     if (board[row][col] == '.')
     {
@@ -344,7 +350,7 @@ void SearchSolution::solveSudokuHelper(vector<vector<char>>& board, int row, int
             if (canPlace(row, col, i))
             {
                 placeNum(row, col, i, true);
-                board[row][col] = i+'0';
+                board[row][col] = i + '0';
                 placeNextNum(board, row, col);
                 if (!isSolvedSudoku)
                 {
@@ -399,6 +405,89 @@ double SearchSolution::mySqrtHelper(double x, double precise)
         }
     }
     return (right + left) / 2;
+}
+
+int SearchSolution::numIslands(vector<vector<char>> &grid)
+{
+    if (grid.size() <= 0)
+    {
+        return 0;
+    }
+    set<int> numIslandsVisited;
+    int row = grid.size();
+    int count = 0;
+    for (int i = 0; i < row; i++)
+    {
+        int col = grid[i].size();
+        for (int j = 0; j < col; j++)
+        {
+            // 如果是1且没有被访问过，则进行DFS
+            if (grid[i][j] != '0' && numIslandsVisited.find(i * col + j) == numIslandsVisited.end())
+            {
+                // 用于标记访问数组，没次DFS会把联通的1都标记为已访问
+                numIsLandsDFS(grid, i, j, row, col, numIslandsVisited);
+                count++;
+            }
+        }
+    }
+    return count;
+}
+
+void SearchSolution::numIsLandsDFS(vector<vector<char>> &grid, int i, int j, int row, int col, set<int> &numIslandsVisited)
+{
+    if (i < 0 || i >= row || j < 0 || j >= col || grid[i][j] == '0' || numIslandsVisited.find(i * col + j) != numIslandsVisited.end())
+    {
+        return;
+    }
+    numIslandsVisited.insert(i * col + j);
+    int dfsX[4] = {-1, 1, 0, 0};
+    int dfsY[4] = {0, 0, -1, 1};
+    for (int k = 0; k < 4; k++)
+    {
+        numIsLandsDFS(grid, i + dfsX[k], j + dfsY[k], row, col, numIslandsVisited);
+    }
+}
+
+/// 这里其实用一重循环就够了，本质问题是求一个无向图的有多少个连通分量
+int SearchSolution::findCircleNum(vector<vector<int>> &M)
+{
+    if (M.size() <= 0)
+    {
+        return 0;
+    }
+    int row = M.size();
+    int col = M[0].size();
+    int count = 0;
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < col; j++)
+        {
+            if (M[i][j] == 1)
+            {
+                count++;
+                // 把所有的找到过的朋友标记为0
+                // cout << "begin" << endl;
+                findCircleNumDFC(M, i, j, row, col);
+                // cout << "end" << endl;
+            }
+        }
+    }
+    return count;
+}
+
+void SearchSolution::findCircleNumDFC(vector<vector<int>> &M, int i, int j, int row, int col)
+{
+    // cout << i << "," << j << endl;
+    M[i][j] = 0;
+    M[j][i] = 0;
+    // 从j开始找到所有认识的朋友
+    for (int k = 0; k < col; k++)
+    {
+        if (M[j][k] == 1)
+        {
+            findCircleNumDFC(M, j, k, row, col);
+        }
+    }
 }
 
 } // namespace Phoenix

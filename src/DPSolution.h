@@ -32,6 +32,10 @@ namespace Phoenix
         /// 300. Longest Increasing Subsequence
         int lengthOfLIS_1(vector<int>& nums); // DP
         int lengthOfLIS_2(vector<int>& nums); // O(Nlog(N))
+        /// 322. Coin Change
+        int coinChange(vector<int>& coins, int amount);
+        /// 72. Edit Distance
+        int minDistance(string word1, string word2);
     private:
         /// 122. Best Time to Buy and Sell Stock II
         // 无限次数的交易，没有冷却时间和交易费
